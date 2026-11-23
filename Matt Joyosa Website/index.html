@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matt Joyosa Webby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h1>Welcome to M.J.W!<br>Choose a Assignment to explore!</h1>
+    <nav aria-label="Assignments">
+      <a href="#a1">Assignment #1<span>Conversion</span></a>
+      <a href="#a2">Assignment #2<span>Income Tax Calculator</span></a>
+      <a href="#a3">Assignment #3<span>Factorial, Sum and Average</span></a>
+      <a href="#a4">Assignment #4<span>Simple Payroll</span></a>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- Assignment 1 -->
+    <section id="a1" aria-labelledby="t1">
+      <h2 id="t1">Conversion</h2>
+      <p class="lead">Type a value and the result updates as you type.</p>
+      <div id="converters" class="grid"></div>
+    </section>
+
+    <!-- Assignment 2 -->
+    <section id="a2" aria-labelledby="t2" hidden>
+      <h2 id="t2">Income Tax Calculator</h2>
+      <p class="lead">Income tax = basic tax + rate × the excess over the bracket floor.</p>
+      <form id="tax-form" class="card">
+        <label for="income">Net taxable income (₱)</label>
+        <div class="row">
+          <input id="income" type="number" min="0" step="0.01" placeholder="e.g. 520000" required>
+          <button type="submit">Compute tax</button>
+        </div>
+        <p id="tax-error" class="error" role="alert"></p>
+        <dl id="tax-result" class="result" hidden></dl>
+      </form>
+      <div class="table-wrap">
+        <table>
+          <caption>Tax table</caption>
+          <thead><tr><th>Over</th><th>But not over</th><th>Basic tax + rate</th></tr></thead>
+          <tbody>
+            <tr><td>–</td><td>₱250,000</td><td>0%</td></tr>
+            <tr><td>₱250,000</td><td>₱400,000</td><td>20% of the excess over ₱250,000</td></tr>
+            <tr><td>₱400,000</td><td>₱800,000</td><td>₱30,000 + 25% of the excess over ₱400,000</td></tr>
+            <tr><td>₱800,000</td><td>₱2,000,000</td><td>₱130,000 + 30% of the excess over ₱800,000</td></tr>
+            <tr><td>₱2,000,000</td><td>₱8,000,000</td><td>₱490,000 + 32% of the excess over ₱2,000,000</td></tr>
+            <tr><td>₱8,000,000</td><td>–</td><td>₱2,410,000 + 35% of the excess over ₱8,000,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Assignment 3 -->
+    <section id="a3" aria-labelledby="t3" hidden>
+      <h2 id="t3">Factorial, Sum and Average</h2>
+      <p class="lead">Enter N to work with the first N natural numbers (1 to N).</p>
+      <form id="series-form" class="card">
+        <label for="n">N (any whole number, 1 or more)</label>
+        <div class="row">
+          <input id="n" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 10" required>
+          <button type="submit">Calculate</button>
+        </div>
+        <p id="series-error" class="error" role="alert"></p>
+      </form>
+      <div id="series-result" class="grid" hidden>
+        <article class="card"><h3>Factorial <small>while loop</small></h3><output id="out-fact"></output></article>
+        <article class="card"><h3>Sum <small>do…while loop</small></h3><output id="out-sum"></output></article>
+        <article class="card"><h3>Average <small>for loop</small></h3><output id="out-avg"></output></article>
+      </div>
+    </section>
+
+    <!-- Assignment 4 -->
+    <section id="a4" aria-labelledby="t4" hidden>
+      <h2 id="t4">Simple Payroll</h2>
+      <p class="lead">Add employees to the payroll list, or delete one by its line number.</p>
+      <form id="payroll-form" class="card">
+        <div class="fields">
+          <div><label for="emp-name">Employee name</label><input id="emp-name" type="text" required></div>
+          <div><label for="emp-days">Days worked</label><input id="emp-days" type="number" min="0" step="0.5" required></div>
+          <div><label for="emp-rate">Daily rate (₱)</label><input id="emp-rate" type="number" min="0" step="0.01" required></div>
+          <div><label for="emp-ded">Deduction amount (₱)</label><input id="emp-ded" type="number" min="0" step="0.01" value="0" required></div>
+        </div>
+        <button type="submit">Add employee</button>
+        <p id="payroll-error" class="error" role="alert"></p>
+      </form>
+
+      <div class="table-wrap">
+        <table id="payroll-table">
+          <thead>
+            <tr><th>No.</th><th>Employee name</th><th class="num">Days worked</th><th class="num">Daily rate</th><th class="num">Gross pay</th><th class="num">Deduction amount</th><th class="num">Net pay</th></tr>
+          </thead>
+          <tbody id="payroll-body"></tbody>
+        </table>
+        <p id="payroll-empty" class="empty">No employees yet. Add one above.</p>
+      </div>
+
+      <form id="delete-form" class="card inline">
+        <label for="del-no">Line number to delete</label>
+        <div class="row">
+          <input id="del-no" type="number" min="1" step="1" required>
+          <button type="submit" class="danger">Delete line</button>
+        </div>
+        <p id="delete-error" class="error" role="alert"></p>
+      </form>
+    </section>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+</html>
